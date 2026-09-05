@@ -1,0 +1,13 @@
+# Quarto build output
+/.quarto/
+/_site/
+
+# Freeze cache 
+/_freeze/
+
+# OS clutter
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/

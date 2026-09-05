@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Isabella Vera"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: labs\labs.qmd
+        text: "Labs"  
+      - href: references/index.qmd
+        text: Resources
+      - href: blog.qmd
+        text: Blog
+    right:
+      - icon: github
+        href: https://github.com/isabella-vera
+      - icon: envelope
+        href: mailto:ivera@hmc.edu
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: false

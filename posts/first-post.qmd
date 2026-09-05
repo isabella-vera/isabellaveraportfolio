@@ -1,0 +1,10 @@
+---
+title: "Start of Semester Reflections"
+description: "We're off to a great start!"
+author: "Isabella Vera"
+date: "9/5/2026"
+categories:
+  - reflection
+draft: false
+---
+Week one of my junior year Fall semester has come to an end! After a very calm summer break, this past week has been a lot, but it's gotten me excited for the semester ahead. I'm looking forward to E155 (MicroPs), my first technical elective. I know this class is going to challenge me, but I'm ready to embrace the challenge. I'm also really looking forward to applying what I'm learning in this class to my clinic project. I can't say too much about what I'm working on just yet, but I can say that I'm happy to be working on a project that will have a real-world impact. I think this is going to be my most challenging semester, but I'm super excited to push myself and learn as much as I can.
