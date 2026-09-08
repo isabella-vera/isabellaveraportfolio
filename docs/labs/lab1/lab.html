@@ -336,12 +336,39 @@ window.Quarto = {
 <span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="kw">endmodule</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><strong>Quality of the output.</strong> On a read-through, this looked like solid, idiomatic SystemVerilog. It used <code>logic</code> consistently instead of <code>wire</code>/<code>reg</code> as the prompt asked, kept the counter and toggle logic in a single <code>always_ff</code> block, and sized the counter width sensibly (<code>[21:0]</code> comfortably covers the needed count without being wastefully wide). It also made a deliberate design choice I hadn’t asked for: instead of using the oscillator’s default 48 MHz output, it selected the 12 MHz divide setting on <code>SB_HFOSC</code> and explained why in a comment, which kept the required counter smaller. The math in the comments checks out — 12 MHz / (3,000,000 × 2) = 2 Hz.</p>
-<p><strong>New syntax/constructs.</strong> <!-- TODO: personalize -- e.g. was SB_HFOSC's CLKHF_DIV parameter or the string-literal parameter syntax ("0b10") new to you? Had you seen `'0` used as a fill literal before? --></p>
-<p><strong>Did it synthesize on the first try?</strong> <!-- TODO: fill in after running it in Radiant. If yes, note that plainly. If not, paste the actual error/warning text Radiant gave you, and what you fed back into ChatGPT to resolve it, and whether that fix worked. --></p>
-<p><strong>Radiant output.</strong> <!-- TODO: paste actual errors/warnings here, spoilered if long. If none, say so. --></p>
-<p><strong>What I’d do differently next time.</strong> <!-- TODO: this one's worth answering honestly once you've seen the real outcome. If it worked cleanly first try, is there anything you'd still double check by hand rather than trusting blindly (reset behavior of `led` before its first assignment, pin constraints, timing)? If it didn't work first try, what would you prompt differently up front to avoid the back-and-forth? --></p>
-<p>Overall, my initial impression from reading the code (before running it) is that it’s a reasonable attempt — clean style, correct-looking timing math, and appropriate use of the vendor primitive. The one thing I’d flag as worth checking in Radiant specifically is <code>led</code>’s initial state: it’s declared as an output <code>logic</code> with no explicit reset in the <code>always_ff</code> block, so its power-on-reset value depends on how the toolchain initializes flip-flops from the bitstream rather than being explicitly defined in the RTL.</p>
+<p><strong>Quality of the output.</strong> On a read-through, this looked like it could be solid, SystemVerilog, but were some things I didn’t recognize. It used <code>logic</code> consistently instead of <code>wire</code>/<code>reg</code> as the prompt asked, kept the counter and toggle logic in a single <code>always_ff</code> block, and sized the counter width sensibly (<code>[21:0]</code> comfortably covers the needed count without being wastefully wide). It also made a deliberate design choice I hadn’t asked for: instead of using the oscillator’s default 48 MHz output, it selected the 12 MHz divide setting on <code>SB_HFOSC</code> and explained why in a comment, which kept the required counter smaller. I had never seen this syntax before but the math in the comments seemed to check out.</p>
+<p>The code did not synthesize on the the first try. I got the following error message from Radiant: 2043063 Warning C:/Users/ivera/my_designs/aiprototype/source/impl_1/top.sv(16,5-22,7) (VERI-1063) instantiating unknown module ‘SB_HFOSC’ [top.sv:16]</p>
+<pre><code>35901063 Error ../source/impl_1/top.sv(22): instantiating unknown module SB_HFOSC. VERI-1063 [top.sv:22]</code></pre>
+<p>I gave this back to chatGPT and asked it to fix the error. It produced the following code, which synthesized successfully:</p>
+<pre><code>module top (
+    output logic led
+);
+
+    logic clk;
+    logic [21:0] counter = '0;
+
+    logic led = 1'b0;
+
+    HSOSC #(
+        .CLKHF_DIV(2'b10)
+    ) hfosc (
+        .CLKHFPU(1'b1),
+        .CLKHFEN(1'b1),
+        .CLKHF  (clk)
+    );
+
+    always_ff @(posedge clk) begin
+        if (counter == 22'd2_999_999) begin
+            counter &lt;= '0;
+            led     &lt;= ~led;
+        end
+        else begin
+            counter &lt;= counter + 1'b1;
+        end
+    end
+
+endmodule</code></pre>
+<p>ChatGPT changed the oscillator primitive from SB_HFOSC to HSOSC because the original syntax wasn’t Radiant compatible. It also configured it for 12 MHz. The LED counter was set to toggle every 3,000,000 cycles to produce a 2 Hz blink, using modern SystemVerilog logic and always_ff syntax.</p>
 
 
 </section>
