@@ -11,11 +11,18 @@ The first step in the design was to determine the logic needed for the first two
 
 The second part of the design included the 7 segment display decoder module that mapped the binary input to the segments of the display that needed to be illuminated to display the correct hexadecimal digit.
 
-
 ## Technical Documentation
+The source code for the project can be found in the associated [Github repository](https://github.com/isabella-vera/E155/tree/main/Lab1)
+
+### Block Diagram
+
+### Schematic
+
 
 ## Results and Discussion
+### Testbench Simulation
 
 ## Conclusion
+
 
 ## AI Prototype Summary
