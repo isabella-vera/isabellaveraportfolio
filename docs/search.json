@@ -95,14 +95,14 @@
     "href": "labs/lab1/lab.html#technical-documentation",
     "title": "Lab 1 - FPGA and MCU Setup and Testing",
     "section": "Technical Documentation",
-    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nBlock Diagram\n\n\nSchematic"
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nBlock Diagram\n\n\n\nFigure 1: Block Diagram of the Design\n\n\n\n\nSchematic"
   },
   {
     "objectID": "labs/lab1/lab.html#results-and-discussion",
     "href": "labs/lab1/lab.html#results-and-discussion",
     "title": "Lab 1 - FPGA and MCU Setup and Testing",
     "section": "Results and Discussion",
-    "text": "Results and Discussion\n\nTestbench Simulation"
+    "text": "Results and Discussion\n\nTestbench Simulation\n\n\n\nFigure 3: Top Module Testbench Waveforms\n\n\nFigure 3 shows the waveforms generated from the testbench simulation of the top module. The waveforms show that the design is functioning as expected. The first two LEDs are illuminated based on the input. The seven segment display is also functioning as expected, displaying the correct hexadecimal digit based on the binary input.\n\n\n\nFigure 4: Blinking LED Waveform\n\n\nThe third LED (led[2]) can be seen blinking at the correct frequency of 2.4 Hz in Figure 4, as the waveforms in Figure 3 were not run for long enough to observe the full blinking cycle."
   },
   {
     "objectID": "labs/lab1/lab.html#conclusion",
