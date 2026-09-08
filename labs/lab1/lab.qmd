@@ -15,18 +15,20 @@ The second part of the design included the 7 segment display decoder module that
 The source code for the project can be found in the associated [Github repository](https://github.com/isabella-vera/E155/tree/main/Lab1)
 
 ### Block Diagram
-![Figure 1: Block Diagram of the Design](/images/blockdiagram.jpeg)
+![Figure 1: Block Diagram of the Design](images/blockdiagram.jpeg)
 
 ### Schematic
 
 
 ## Results and Discussion
 ### Testbench Simulation
-![Figure 3: Top Module Testbench Waveforms](/images/allwaveforms.jpeg)
+![Figure 3: Top Module Testbench Waveforms](images/allwaveforms.png)
 
-Figure 3 shows the waveforms generated from the testbench simulation of the top module. The waveforms show that the design is functioning as expected. The first two LEDs are illuminated based on the input. The seven segment display is also functioning as expected, displaying the correct hexadecimal digit based on the binary input.
+Figure 3 shows the waveforms generated from the testbench simulation of the top module. The waveforms show that the design is functioning as expected. The first two LEDs are illuminated based on the input. The seven segment display is also functioning as expected, displaying the correct hexadecimal digit based on the binary input. 
 
-![Figure 4: Blinking LED Waveform](/images/blinkwaveforms.png)
+By running looking at the top module testbench waveforms, we can confirm that each of the modules is connected properly and functioning as expected as the top modules passes inputs into each module and demonstrates the expected behavior.
+
+![Figure 4: Blinking LED Waveform](images/blinkwaveforms.png)
 
 The third LED (led[2]) can be seen blinking at the correct frequency of 2.4 Hz in Figure 4, as the waveforms in Figure 3 were not run for long enough to observe the full blinking cycle. 
 
