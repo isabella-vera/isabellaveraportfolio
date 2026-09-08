@@ -17,12 +17,3 @@ about:
 ---
 
 Hello! I am currently a junior at Harvey Mudd College, where I'm pursuing a degree in General Engineering, and am interested in a career as an electrical engineer. I'm involved in various projects and organizations on campus, including the Society of Hispanic Professional Engineers and the college's Makerspace. In my free time, I enjoy crafting, reading, and exploring new places. I'm excited to continue learning and growing as an engineer, and hope to make a positive impact with my work.
-
-## Education
-
-**Harvey Mudd College** | Claremont, CA |
-B.S. Engineering, Expected May 2028 | GPA: 3.59
-
-**Awards & Recognition:** President's Scholars Program Award Recipient, Dean's List
-
-**Affiliations:** Society of Women Engineers, Society of Hispanic Professional Engineers

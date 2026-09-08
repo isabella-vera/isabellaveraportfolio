@@ -56,13 +56,6 @@
     "text": "Hello! I am currently a junior at Harvey Mudd College, where I’m pursuing a degree in General Engineering, and am interested in a career as an electrical engineer. I’m involved in various projects and organizations on campus, including the Society of Hispanic Professional Engineers and the college’s Makerspace. In my free time, I enjoy crafting, reading, and exploring new places. I’m excited to continue learning and growing as an engineer, and hope to make a positive impact with my work."
   },
   {
-    "objectID": "index.html#education",
-    "href": "index.html#education",
-    "title": "Isabella Vera",
-    "section": "Education",
-    "text": "Education\nHarvey Mudd College | Claremont, CA | B.S. Engineering, Expected May 2028 | GPA: 3.59\nAwards & Recognition: President’s Scholars Program Award Recipient, Dean’s List\nAffiliations: Society of Women Engineers, Society of Hispanic Professional Engineers"
-  },
-  {
     "objectID": "blog.html",
     "href": "blog.html",
     "title": "E155 Blog",
@@ -95,28 +88,28 @@
     "href": "labs/lab1/lab.html#technical-documentation",
     "title": "Lab 1 - FPGA and MCU Setup and Testing",
     "section": "Technical Documentation",
-    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nBlock Diagram\n\n\n\nFigure 1: Block Diagram of the Design\n\n\n\n\nSchematic"
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nBlock Diagram\n\n\n\nFigure 1: Block Diagram of the Design\n\n\n\n\nSchematic\n\n\n\nFigure 2: FPGA Output Pins and their Corresponding Display Pins\n\n\n\n\nResistor Caculations\nTo determine the appropriate resistor values, I used the forward voltage and current ratings from the 7-segment display datasheet. From the datasheet, I found that the voltage drop is typically 2.1 V, so with a 3.3 V supply voltage the resistor will have 1.2 V across it. To keep the current within the FPGA’s and the display’s constraints, I choose to use 150 ohm resistors which gives a current of 8 mA. This is well within the range.\n\n\nBlink Frequency Calculations\nThe blink LED (led2) is driven by blinkCounter, clocked by the FPGA’s internal HSOSC oscillator at \\(f_{clk} = 48\\text{ MHz}\\). The counter increments once per clock cycle and toggles led2 every time it reaches DIV - 1 cycles. I calculated the value of DIV to achieve a blink frequency of 2.4 Hz as follows:"
   },
   {
     "objectID": "labs/lab1/lab.html#results-and-discussion",
     "href": "labs/lab1/lab.html#results-and-discussion",
     "title": "Lab 1 - FPGA and MCU Setup and Testing",
     "section": "Results and Discussion",
-    "text": "Results and Discussion\n\nTestbench Simulation\n\n\n\nFigure 3: Top Module Testbench Waveforms\n\n\nFigure 3 shows the waveforms generated from the testbench simulation of the top module. The waveforms show that the design is functioning as expected. The first two LEDs are illuminated based on the input. The seven segment display is also functioning as expected, displaying the correct hexadecimal digit based on the binary input.\nBy running looking at the top module testbench waveforms, we can confirm that each of the modules is connected properly and functioning as expected as the top modules passes inputs into each module and demonstrates the expected behavior.\n\n\n\nFigure 4: Blinking LED Waveform\n\n\nThe third LED (led[2]) can be seen blinking at the correct frequency of 2.4 Hz in Figure 4, as the waveforms in Figure 3 were not run for long enough to observe the full blinking cycle."
+    "text": "Results and Discussion\n\nTestbench Simulation\n\n\n\nFigure 3: Top Module Testbench Waveforms\n\n\nFigure 3 shows the waveforms generated from the testbench simulation of the top module. The waveforms show that the design is functioning as expected. The first two LEDs are illuminated based on the input. The seven segment display is also functioning as expected, displaying the correct hexadecimal digit based on the binary input.\nBy running looking at the top module testbench waveforms, we can confirm that each of the modules is connected properly and functioning as expected as the top modules passes inputs into each module and demonstrates the expected behavior.\n\n\n\nFigure 4: Blinking LED Waveform\n\n\nThe third LED (led[2]) can be seen blinking at the correct frequency of 2.4 Hz in Figure 4, as the waveforms in Figure 3 were not run for long enough to observe the full blinking cycle.\n\n\nDiscussion\nWhile all prescribed tasks were completed successfully, there was one issue with the hardware of the 7-segment display. The logic for the 7-segment display was correct, and the display was able to show all hexadecimal digits from 0x0 through 0xF, but the display was extremely dim. This was due to the 3.3V pin on the breadboard adapter dropping to 1.5-1.6V when connected to the display. Further work should be done to improve the brightness of the display."
   },
   {
     "objectID": "labs/lab1/lab.html#conclusion",
     "href": "labs/lab1/lab.html#conclusion",
     "title": "Lab 1 - FPGA and MCU Setup and Testing",
     "section": "Conclusion",
-    "text": "Conclusion"
+    "text": "Conclusion\nThe design successfully blinked one LED at a frequency of 2.4 Hz using the on-board high-speed oscillator and demonstrated the correct logic for the other two LEDS. Additionally, the 7-segment display was succesfully driven by a combinational logic decoder and displayed all sixteen hexadecimal digits from 0x0 through 0xF. I spent about twenty hours working on this lab."
   },
   {
     "objectID": "labs/lab1/lab.html#ai-prototype-summary",
     "href": "labs/lab1/lab.html#ai-prototype-summary",
     "title": "Lab 1 - FPGA and MCU Setup and Testing",
     "section": "AI Prototype Summary",
-    "text": "AI Prototype Summary"
+    "text": "AI Prototype Summary\nI used ChatGPT to generate SystemVerilog for the 2 Hz blink prompt. The code it produced:\nmodule top (\n    output logic led\n);\n\n    // Internal high-speed oscillator\n    logic clk;\n\n    // 22 bits is enough to count to 2,999,999\n    logic [21:0] counter = '0;\n\n    // UP5K HFOSC:\n    // 2'b00 = 48 MHz\n    // 2'b01 = 24 MHz\n    // 2'b10 = 12 MHz\n    // 2'b11 =  6 MHz\n    SB_HFOSC #(\n        .CLKHF_DIV(\"0b10\")       // 12 MHz\n    ) hfosc (\n        .CLKHFPU(1'b1),          // Power up oscillator\n        .CLKHFEN(1'b1),          // Enable oscillator\n        .CLKHF  (clk)\n    );\n\n    // Divide 12 MHz down to a 2 Hz square wave.\n    // Toggle LED every 3,000,000 clock cycles:\n    //     12 MHz / (3,000,000 * 2) = 2 Hz\n    always_ff @(posedge clk) begin\n        if (counter == 22'd2_999_999) begin\n            counter &lt;= '0;\n            led     &lt;= ~led;\n        end\n        else begin\n            counter &lt;= counter + 1'b1;\n        end\n    end\n\nendmodule\nQuality of the output. On a read-through, this looked like solid, idiomatic SystemVerilog. It used logic consistently instead of wire/reg as the prompt asked, kept the counter and toggle logic in a single always_ff block, and sized the counter width sensibly ([21:0] comfortably covers the needed count without being wastefully wide). It also made a deliberate design choice I hadn’t asked for: instead of using the oscillator’s default 48 MHz output, it selected the 12 MHz divide setting on SB_HFOSC and explained why in a comment, which kept the required counter smaller. The math in the comments checks out — 12 MHz / (3,000,000 × 2) = 2 Hz.\nNew syntax/constructs. \nDid it synthesize on the first try? \nRadiant output. \nWhat I’d do differently next time. \nOverall, my initial impression from reading the code (before running it) is that it’s a reasonable attempt — clean style, correct-looking timing math, and appropriate use of the vendor primitive. The one thing I’d flag as worth checking in Radiant specifically is led’s initial state: it’s declared as an output logic with no explicit reset in the always_ff block, so its power-on-reset value depends on how the toolchain initializes flip-flops from the bitstream rather than being explicitly defined in the RTL."
   },
   {
     "objectID": "posts/first-post.html",
