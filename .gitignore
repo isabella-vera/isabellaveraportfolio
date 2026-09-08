@@ -2,7 +2,7 @@
 /.quarto/
 /_site/
 
-# Freeze cache 
+# Freeze cache
 /_freeze/
 
 # OS clutter
@@ -11,3 +11,4 @@ Thumbs.db
 
 # Editor
 .vscode/
+**/*.quarto_ipynb

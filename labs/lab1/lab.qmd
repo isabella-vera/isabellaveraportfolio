@@ -1,3 +1,21 @@
 ---
 title: Lab 1 - FPGA and MCU Setup and Testing
+author: Isabella Vera
 ---
+## Introduction
+In this lab, a design was implemented on the FPGA to program a seven segment display, to show hexadecimal digits from 0 to F given a binary input. Two LEDs were also programmed with set logic given the input, and a third LED was programmed to blink at 2.4 Hz.
+
+## Design and Testing Methodology
+### Design Overview
+The first step in the design was to determine the logic needed for the first two LEDs which resulted in a XOR gate and an AND gate. The third blinking LED utilized the on-board high-speed oscillator to generate a 48 MHz clock signal, then a counter was used at a cycle of 20000000 to generate a 2.4 Hz blinking frequency. 
+
+The second part of the design included the 7 segment display decoder module that mapped the binary input to the segments of the display that needed to be illuminated to display the correct hexadecimal digit.
+
+
+## Technical Documentation
+
+## Results and Discussion
+
+## Conclusion
+
+## AI Prototype Summary
