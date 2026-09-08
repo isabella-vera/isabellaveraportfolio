@@ -70,6 +70,55 @@
     "text": "Start of Semester Reflections\n\n\nWe’re off to a great start!\n\n\n\n\n\nSep 5, 2026\n\n\nIsabella Vera\n\n\n\n\n\nNo matching items"
   },
   {
+    "objectID": "labs/lab1/lab.html",
+    "href": "labs/lab1/lab.html",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "",
+    "text": "In this lab, a design was implemented on the FPGA to program a seven segment display, to show hexadecimal digits from 0 to F given a binary input. Two LEDs were also programmed with set logic given the input, and a third LED was programmed to blink at 2.4 Hz."
+  },
+  {
+    "objectID": "labs/lab1/lab.html#introduction",
+    "href": "labs/lab1/lab.html#introduction",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "",
+    "text": "In this lab, a design was implemented on the FPGA to program a seven segment display, to show hexadecimal digits from 0 to F given a binary input. Two LEDs were also programmed with set logic given the input, and a third LED was programmed to blink at 2.4 Hz."
+  },
+  {
+    "objectID": "labs/lab1/lab.html#design-and-testing-methodology",
+    "href": "labs/lab1/lab.html#design-and-testing-methodology",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\n\nDesign Overview\nThe first step in the design was to determine the logic needed for the first two LEDs which resulted in a XOR gate and an AND gate. The third blinking LED utilized the on-board high-speed oscillator to generate a 48 MHz clock signal, then a counter was used at a cycle of 20000000 to generate a 2.4 Hz blinking frequency.\nThe second part of the design included the 7 segment display decoder module that mapped the binary input to the segments of the display that needed to be illuminated to display the correct hexadecimal digit."
+  },
+  {
+    "objectID": "labs/lab1/lab.html#technical-documentation",
+    "href": "labs/lab1/lab.html#technical-documentation",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nBlock Diagram\n\n\nSchematic"
+  },
+  {
+    "objectID": "labs/lab1/lab.html#results-and-discussion",
+    "href": "labs/lab1/lab.html#results-and-discussion",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\n\nTestbench Simulation"
+  },
+  {
+    "objectID": "labs/lab1/lab.html#conclusion",
+    "href": "labs/lab1/lab.html#conclusion",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "Conclusion",
+    "text": "Conclusion"
+  },
+  {
+    "objectID": "labs/lab1/lab.html#ai-prototype-summary",
+    "href": "labs/lab1/lab.html#ai-prototype-summary",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary"
+  },
+  {
     "objectID": "posts/first-post.html",
     "href": "posts/first-post.html",
     "title": "Start of Semester Reflections",
