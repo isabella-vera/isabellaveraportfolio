@@ -43,7 +43,7 @@ By running looking at the top module testbench waveforms, we can confirm that ea
 The third LED (led[2]) can be seen blinking at the correct frequency of 2.4 Hz in Figure 4, as the waveforms in Figure 3 were not run for long enough to observe the full blinking cycle. 
 
 ### Discussion
-While all prescribed tasks were completed successfully, there was one issue with the hardware of the 7-segment display. The logic for the 7-segment display was correct, and the display was able to show all hexadecimal digits from 0x0 through 0xF, but the display was extremely dim. This was due to the 3.3V pin on the breadboard adapter dropping to 1.5-1.6V when connected to the display. Further work should be done to improve the brightness of the display.
+All prescribed tasks were completed successfully, there was one issue with the hardware of the 7-segment display. The logic for the 7-segment display was correct, and the display was able to show all hexadecimal digits from 0x0 through 0xF.
 
 ## Conclusion
 The design successfully blinked one LED at a frequency of 2.4 Hz using the on-board high-speed oscillator and demonstrated the correct logic for the other two LEDS. Additionally, the 7-segment display was succesfully driven by a combinational logic decoder and displayed all sixteen hexadecimal digits from 0x0 through 0xF. I spent about twenty hours working on this lab.
@@ -96,6 +96,7 @@ endmodule
 **Quality of the output.** On a read-through, this looked like it could be solid, SystemVerilog, but were some things I didn't recognize. It used `logic` consistently instead of `wire`/`reg` as the prompt asked, kept the counter and toggle logic in a single `always_ff` block, and sized the counter width sensibly (`[21:0]` comfortably covers the needed count without being wastefully wide). It also made a deliberate design choice I hadn't asked for: instead of using the oscillator's default 48 MHz output, it selected the 12 MHz divide setting on `SB_HFOSC` and explained why in a comment, which kept the required counter smaller. I had never seen this syntax before but the math in the comments seemed to check out.
 
 The code did not synthesize on the the first try. I got the following error message from Radiant:
+
     2043063 Warning C:/Users/ivera/my_designs/aiprototype/source/impl_1/top.sv(16,5-22,7) (VERI-1063) instantiating unknown module 'SB_HFOSC' [top.sv:16]
 
     35901063 Error ../source/impl_1/top.sv(22): instantiating unknown module SB_HFOSC. VERI-1063 [top.sv:22]

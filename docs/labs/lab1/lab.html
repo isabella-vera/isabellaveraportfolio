@@ -289,7 +289,7 @@ window.Quarto = {
 </section>
 <section id="discussion" class="level3">
 <h3 class="anchored" data-anchor-id="discussion">Discussion</h3>
-<p>While all prescribed tasks were completed successfully, there was one issue with the hardware of the 7-segment display. The logic for the 7-segment display was correct, and the display was able to show all hexadecimal digits from 0x0 through 0xF, but the display was extremely dim. This was due to the 3.3V pin on the breadboard adapter dropping to 1.5-1.6V when connected to the display. Further work should be done to improve the brightness of the display.</p>
+<p>All prescribed tasks were completed successfully, there was one issue with the hardware of the 7-segment display. The logic for the 7-segment display was correct, and the display was able to show all hexadecimal digits from 0x0 through 0xF.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
@@ -337,8 +337,10 @@ window.Quarto = {
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="kw">endmodule</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Quality of the output.</strong> On a read-through, this looked like it could be solid, SystemVerilog, but were some things I didn’t recognize. It used <code>logic</code> consistently instead of <code>wire</code>/<code>reg</code> as the prompt asked, kept the counter and toggle logic in a single <code>always_ff</code> block, and sized the counter width sensibly (<code>[21:0]</code> comfortably covers the needed count without being wastefully wide). It also made a deliberate design choice I hadn’t asked for: instead of using the oscillator’s default 48 MHz output, it selected the 12 MHz divide setting on <code>SB_HFOSC</code> and explained why in a comment, which kept the required counter smaller. I had never seen this syntax before but the math in the comments seemed to check out.</p>
-<p>The code did not synthesize on the the first try. I got the following error message from Radiant: 2043063 Warning C:/Users/ivera/my_designs/aiprototype/source/impl_1/top.sv(16,5-22,7) (VERI-1063) instantiating unknown module ‘SB_HFOSC’ [top.sv:16]</p>
-<pre><code>35901063 Error ../source/impl_1/top.sv(22): instantiating unknown module SB_HFOSC. VERI-1063 [top.sv:22]</code></pre>
+<p>The code did not synthesize on the the first try. I got the following error message from Radiant:</p>
+<pre><code>2043063 Warning C:/Users/ivera/my_designs/aiprototype/source/impl_1/top.sv(16,5-22,7) (VERI-1063) instantiating unknown module 'SB_HFOSC' [top.sv:16]
+
+35901063 Error ../source/impl_1/top.sv(22): instantiating unknown module SB_HFOSC. VERI-1063 [top.sv:22]</code></pre>
 <p>I gave this back to chatGPT and asked it to fix the error. It produced the following code, which synthesized successfully:</p>
 <pre><code>module top (
     output logic led
