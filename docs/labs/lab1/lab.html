@@ -258,13 +258,14 @@ window.Quarto = {
 </figure>
 </div>
 </section>
-<section id="resistor-caculations" class="level3">
-<h3 class="anchored" data-anchor-id="resistor-caculations">Resistor Caculations</h3>
+<section id="resistor-calculations" class="level3">
+<h3 class="anchored" data-anchor-id="resistor-calculations">Resistor Calculations</h3>
 <p>To determine the appropriate resistor values, I used the forward voltage and current ratings from the 7-segment display datasheet. From the datasheet, I found that the voltage drop is typically 2.1 V, so with a 3.3 V supply voltage the resistor will have 1.2 V across it. To keep the current within the FPGA’s and the display’s constraints, I choose to use 150 ohm resistors which gives a current of 8 mA. This is well within the range.</p>
 </section>
 <section id="blink-frequency-calculations" class="level3">
 <h3 class="anchored" data-anchor-id="blink-frequency-calculations">Blink Frequency Calculations</h3>
-<p>The blink LED (<code>led2</code>) is driven by <code>blinkCounter</code>, clocked by the FPGA’s internal <code>HSOSC</code> oscillator at <span class="math inline">\(f_{clk} = 48\text{ MHz}\)</span>. The counter increments once per clock cycle and toggles <code>led2</code> every time it reaches <code>DIV - 1</code> cycles. I calculated the value of <code>DIV</code> to achieve a blink frequency of 2.4 Hz as follows: <img src="images/divdef.jpeg" class="img-fluid" alt="Frequency Calculation"></p>
+<p>The blink LED (<code>led2</code>) is driven by <code>blinkCounter</code>, clocked by the FPGA’s internal <code>HSOSC</code> oscillator at <span class="math inline">\(f_{clk} = 48\text{ MHz}\)</span>. The counter increments once per clock cycle and toggles <code>led2</code> every time it reaches <code>DIV - 1</code> cycles. I calculated the value of <code>DIV</code> to achieve a blink frequency of 2.4 Hz as follows: <span class="math inline">\(DIV = \frac{48\text{ MHz}}{2 \times 2.4\text{ Hz}} = 10,000,000\)</span></p>
+<p>48 MHz is the frequency of the internal oscillator, 2.4 Hz is the desired blink frequency, and the factor of 2 in the denominator accounts for the fact that the LED toggles on every other cycle of the counter. The resulting value of DIV is 10,000,000, which means that the counter will count to 10 million before toggling the LED, resulting in a blink frequency of 2.4 Hz.</p>
 </section>
 </section>
 <section id="results-and-discussion" class="level2">
