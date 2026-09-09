@@ -95,7 +95,7 @@
     "href": "labs/lab1/lab.html#results-and-discussion",
     "title": "Lab 1 - FPGA and MCU Setup and Testing",
     "section": "Results and Discussion",
-    "text": "Results and Discussion\n\nTestbench Simulation\n  \nAbove are the waveforms generated from each testbench simulation. Each module had its own test bench. The waveforms show that the design is functioning as expected. The first two LEDs are illuminated based on the input. The seven segment display is also functioning as expected, displaying the correct hexadecimal digit based on the binary input.\n\n\nDiscussion\nAll prescribed tasks were completed successfully, there was one issue with the hardware of the 7-segment display. The logic for the 7-segment display was correct, and the display was able to show all hexadecimal digits from 0x0 through 0xF."
+    "text": "Results and Discussion\n\nTestbench Simulation\n\n\n\nTop Module Testbench Waveforms\n\n\n\n\n\nSeven Segment Display Testbench Waveforms\n\n\n\n\n\nLED Blink Testbench Waveforms\n\n\nAbove are the waveforms generated from each testbench simulation. Each module had its own test bench. The waveforms show that the design is functioning as expected. The first two LEDs are illuminated based on the input. The seven segment display is also functioning as expected, displaying the correct hexadecimal digit based on the binary input.\n\n\nDiscussion\nAll prescribed tasks were completed successfully, there was one issue with the hardware of the 7-segment display. The logic for the 7-segment display was correct, and the display was able to show all hexadecimal digits from 0x0 through 0xF."
   },
   {
     "objectID": "labs/lab1/lab.html#conclusion",

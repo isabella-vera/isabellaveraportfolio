@@ -18,7 +18,7 @@ The source code for the project can be found in the associated [Github repositor
 ![Figure 1: Block Diagram of the Design](images/blockdiagram.jpeg)
 
 ### Schematic
-![Figure 2: FPGA Output Pins and their Corresponding Display Pins](images/schematic.png)
+![Figure 2: FPGA Output Pins and their Corresponding Display Pins](images/schematic.jpeg)
 
 ### Resistor Calculations
 To determine the appropriate resistor values, I used the forward voltage and current ratings from the 7-segment display datasheet. From the datasheet, I found that the voltage drop is typically 2.1 V, so with a 3.3 V supply voltage the resistor will have 1.2 V across it. To keep the current within the FPGA's and the display's constraints, I choose to use 150 ohm resistors which gives a current of 8 mA. This is well within the range.
@@ -36,7 +36,9 @@ $DIV = \frac{48\text{ MHz}}{2 \times 2.4\text{ Hz}} = 10,000,000$
 ### Testbench Simulation
 
 ![Top Module Testbench Waveforms](images/allwaveforms.png)
+
 ![Seven Segment Display Testbench Waveforms](images/sevensegwaves.png)
+
 ![LED Blink Testbench Waveforms](images/blinkwaveforms.png)
 
 Above are the waveforms generated from each testbench simulation. Each module had its own test bench. The waveforms show that the design is functioning as expected. The first two LEDs are illuminated based on the input. The seven segment display is also functioning as expected, displaying the correct hexadecimal digit based on the binary input. 
