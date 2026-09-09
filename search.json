@@ -1,0 +1,121 @@
+[
+  {
+    "objectID": "references/index.html",
+    "href": "references/index.html",
+    "title": "Resources",
+    "section": "",
+    "text": "Link to E155 Course Website"
+  },
+  {
+    "objectID": "labs/labs.html#lab-2---multiplexed-7-segment-display",
+    "href": "labs/labs.html#lab-2---multiplexed-7-segment-display",
+    "title": "Labs",
+    "section": "Lab 2 - Multiplexed 7-Segment Display",
+    "text": "Lab 2 - Multiplexed 7-Segment Display"
+  },
+  {
+    "objectID": "labs/labs.html#lab-3---keypad-scanner",
+    "href": "labs/labs.html#lab-3---keypad-scanner",
+    "title": "Labs",
+    "section": "Lab 3 - Keypad Scanner",
+    "text": "Lab 3 - Keypad Scanner"
+  },
+  {
+    "objectID": "labs/labs.html#lab-4---digital-audio",
+    "href": "labs/labs.html#lab-4---digital-audio",
+    "title": "Labs",
+    "section": "Lab 4 - Digital Audio",
+    "text": "Lab 4 - Digital Audio"
+  },
+  {
+    "objectID": "labs/labs.html#lab-5---interrupts",
+    "href": "labs/labs.html#lab-5---interrupts",
+    "title": "Labs",
+    "section": "Lab 5 - Interrupts",
+    "text": "Lab 5 - Interrupts"
+  },
+  {
+    "objectID": "labs/labs.html#lab-6---the-internet-of-things-and-serial-peripheral-interface",
+    "href": "labs/labs.html#lab-6---the-internet-of-things-and-serial-peripheral-interface",
+    "title": "Labs",
+    "section": "Lab 6 - The Internet of Things and Serial Peripheral Interface",
+    "text": "Lab 6 - The Internet of Things and Serial Peripheral Interface"
+  },
+  {
+    "objectID": "labs/labs.html#lab-7---the-advanced-encryption-standard",
+    "href": "labs/labs.html#lab-7---the-advanced-encryption-standard",
+    "title": "Labs",
+    "section": "Lab 7 - The Advanced Encryption Standard",
+    "text": "Lab 7 - The Advanced Encryption Standard"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Isabella Vera",
+    "section": "",
+    "text": "Hello! I am currently a junior at Harvey Mudd College, where I’m pursuing a degree in General Engineering, and am interested in a career as an electrical engineer. I’m involved in various projects and organizations on campus, including the Society of Hispanic Professional Engineers and the college’s Makerspace. In my free time, I enjoy crafting, reading, and exploring new places. I’m excited to continue learning and growing as an engineer, and hope to make a positive impact with my work."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "E155 Blog",
+    "section": "",
+    "text": "Start of Semester Reflections\n\n\nWe’re off to a great start!\n\n\n\n\n\nSep 5, 2026\n\n\nIsabella Vera\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "labs/lab1/lab.html",
+    "href": "labs/lab1/lab.html",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "",
+    "text": "In this lab, a design was implemented on the FPGA to program a seven segment display, to show hexadecimal digits from 0 to F given a binary input. Two LEDs were also programmed with set logic given the input, and a third LED was programmed to blink at 2.4 Hz."
+  },
+  {
+    "objectID": "labs/lab1/lab.html#introduction",
+    "href": "labs/lab1/lab.html#introduction",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "",
+    "text": "In this lab, a design was implemented on the FPGA to program a seven segment display, to show hexadecimal digits from 0 to F given a binary input. Two LEDs were also programmed with set logic given the input, and a third LED was programmed to blink at 2.4 Hz."
+  },
+  {
+    "objectID": "labs/lab1/lab.html#design-and-testing-methodology",
+    "href": "labs/lab1/lab.html#design-and-testing-methodology",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\n\nDesign Overview\nThe first step in the design was to determine the logic needed for the first two LEDs which resulted in a XOR gate and an AND gate. The third blinking LED utilized the on-board high-speed oscillator to generate a 48 MHz clock signal, then a counter was used at a cycle of 20000000 to generate a 2.4 Hz blinking frequency.\nThe second part of the design included the 7 segment display decoder module that mapped the binary input to the segments of the display that needed to be illuminated to display the correct hexadecimal digit."
+  },
+  {
+    "objectID": "labs/lab1/lab.html#technical-documentation",
+    "href": "labs/lab1/lab.html#technical-documentation",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nBlock Diagram\n\n\n\nFigure 1: Block Diagram of the Design\n\n\n\n\nSchematic\n\n\n\nFigure 2: FPGA Output Pins and their Corresponding Display Pins\n\n\n\n\nResistor Caculations\nTo determine the appropriate resistor values, I used the forward voltage and current ratings from the 7-segment display datasheet. From the datasheet, I found that the voltage drop is typically 2.1 V, so with a 3.3 V supply voltage the resistor will have 1.2 V across it. To keep the current within the FPGA’s and the display’s constraints, I choose to use 150 ohm resistors which gives a current of 8 mA. This is well within the range.\n\n\nBlink Frequency Calculations\nThe blink LED (led2) is driven by blinkCounter, clocked by the FPGA’s internal HSOSC oscillator at \\(f_{clk} = 48\\text{ MHz}\\). The counter increments once per clock cycle and toggles led2 every time it reaches DIV - 1 cycles. I calculated the value of DIV to achieve a blink frequency of 2.4 Hz as follows:"
+  },
+  {
+    "objectID": "labs/lab1/lab.html#results-and-discussion",
+    "href": "labs/lab1/lab.html#results-and-discussion",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\n\nTestbench Simulation\n  \nAbove are the waveforms generated from each testbench simulation. Each module had its own test bench. The waveforms show that the design is functioning as expected. The first two LEDs are illuminated based on the input. The seven segment display is also functioning as expected, displaying the correct hexadecimal digit based on the binary input.\n\n\nDiscussion\nAll prescribed tasks were completed successfully, there was one issue with the hardware of the 7-segment display. The logic for the 7-segment display was correct, and the display was able to show all hexadecimal digits from 0x0 through 0xF."
+  },
+  {
+    "objectID": "labs/lab1/lab.html#conclusion",
+    "href": "labs/lab1/lab.html#conclusion",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe design successfully blinked one LED at a frequency of 2.4 Hz using the on-board high-speed oscillator and demonstrated the correct logic for the other two LEDS. Additionally, the 7-segment display was succesfully driven by a combinational logic decoder and displayed all sixteen hexadecimal digits from 0x0 through 0xF. I spent about twenty hours working on this lab."
+  },
+  {
+    "objectID": "labs/lab1/lab.html#ai-prototype-summary",
+    "href": "labs/lab1/lab.html#ai-prototype-summary",
+    "title": "Lab 1 - FPGA and MCU Setup and Testing",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nI used ChatGPT to generate SystemVerilog for the 2 Hz blink prompt. The code it produced:\nmodule top (\n    output logic led\n);\n\n    // Internal high-speed oscillator\n    logic clk;\n\n    // 22 bits is enough to count to 2,999,999\n    logic [21:0] counter = '0;\n\n    // UP5K HFOSC:\n    // 2'b00 = 48 MHz\n    // 2'b01 = 24 MHz\n    // 2'b10 = 12 MHz\n    // 2'b11 =  6 MHz\n    SB_HFOSC #(\n        .CLKHF_DIV(\"0b10\")       // 12 MHz\n    ) hfosc (\n        .CLKHFPU(1'b1),          // Power up oscillator\n        .CLKHFEN(1'b1),          // Enable oscillator\n        .CLKHF  (clk)\n    );\n\n    // Divide 12 MHz down to a 2 Hz square wave.\n    // Toggle LED every 3,000,000 clock cycles:\n    //     12 MHz / (3,000,000 * 2) = 2 Hz\n    always_ff @(posedge clk) begin\n        if (counter == 22'd2_999_999) begin\n            counter &lt;= '0;\n            led     &lt;= ~led;\n        end\n        else begin\n            counter &lt;= counter + 1'b1;\n        end\n    end\n\nendmodule\nQuality of the output. On a read-through, this looked like it could be solid, SystemVerilog, but were some things I didn’t recognize. It used logic consistently instead of wire/reg as the prompt asked, kept the counter and toggle logic in a single always_ff block, and sized the counter width sensibly ([21:0] comfortably covers the needed count without being wastefully wide). It also made a deliberate design choice I hadn’t asked for: instead of using the oscillator’s default 48 MHz output, it selected the 12 MHz divide setting on SB_HFOSC and explained why in a comment, which kept the required counter smaller. I had never seen this syntax before but the math in the comments seemed to check out.\nThe code did not synthesize on the the first try. I got the following error message from Radiant:\n2043063 Warning C:/Users/ivera/my_designs/aiprototype/source/impl_1/top.sv(16,5-22,7) (VERI-1063) instantiating unknown module 'SB_HFOSC' [top.sv:16]\n\n35901063 Error ../source/impl_1/top.sv(22): instantiating unknown module SB_HFOSC. VERI-1063 [top.sv:22]\nI gave this back to chatGPT and asked it to fix the error. It produced the following code, which synthesized successfully:\nmodule top (\n    output logic led\n);\n\n    logic clk;\n    logic [21:0] counter = '0;\n\n    logic led = 1'b0;\n\n    HSOSC #(\n        .CLKHF_DIV(2'b10)\n    ) hfosc (\n        .CLKHFPU(1'b1),\n        .CLKHFEN(1'b1),\n        .CLKHF  (clk)\n    );\n\n    always_ff @(posedge clk) begin\n        if (counter == 22'd2_999_999) begin\n            counter &lt;= '0;\n            led     &lt;= ~led;\n        end\n        else begin\n            counter &lt;= counter + 1'b1;\n        end\n    end\n\nendmodule\nChatGPT changed the oscillator primitive from SB_HFOSC to HSOSC because the original syntax wasn’t Radiant compatible. It also configured it for 12 MHz. The LED counter was set to toggle every 3,000,000 cycles to produce a 2 Hz blink, using modern SystemVerilog logic and always_ff syntax."
+  },
+  {
+    "objectID": "posts/first-post.html",
+    "href": "posts/first-post.html",
+    "title": "Start of Semester Reflections",
+    "section": "",
+    "text": "Week one of my junior year Fall semester has come to an end! After a very calm summer break, this past week has been a lot, but it’s gotten me excited for the semester ahead. I’m looking forward to E155 (MicroPs), my first technical elective. I know this class is going to challenge me, but I’m ready to embrace the challenge. I’m also really looking forward to applying what I’m learning in this class to my clinic project. I can’t say too much about what I’m working on just yet, but I can say that I’m happy to be working on a project that will have a real-world impact. I think this is going to be my most challenging semester, but I’m super excited to push myself and learn as much as I can."
+  }
+]
