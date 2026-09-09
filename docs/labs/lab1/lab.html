@@ -264,7 +264,7 @@ window.Quarto = {
 </section>
 <section id="blink-frequency-calculations" class="level3">
 <h3 class="anchored" data-anchor-id="blink-frequency-calculations">Blink Frequency Calculations</h3>
-<p>The blink LED (<code>led2</code>) is driven by <code>blinkCounter</code>, clocked by the FPGA’s internal <code>HSOSC</code> oscillator at <span class="math inline">\(f_{clk} = 48\text{ MHz}\)</span>. The counter increments once per clock cycle and toggles <code>led2</code> every time it reaches <code>DIV - 1</code> cycles. I calculated the value of <code>DIV</code> to achieve a blink frequency of 2.4 Hz as follows: <span class="math inline">\(DIV = \frac{48\text{ MHz}}{2 \times 2.4\text{ Hz}} = 10,000,000\)</span></p>
+<p>The blink LED (led2) is driven by blinkCounter, clocked by the FPGA’s internal high speed oscillator (HSOSC) at <span class="math inline">\(f_{clk} = 48\text{ MHz}\)</span>. The counter increments once per clock cycle and toggles led2 every time it reaches <code>DIV - 1</code> cycles. I calculated the value of <code>DIV</code> to achieve a blink frequency of 2.4 Hz as follows: <span class="math inline">\(DIV = \frac{48\text{ MHz}}{2 \times 2.4\text{ Hz}} = 10,000,000\)</span></p>
 <p>48 MHz is the frequency of the internal oscillator, 2.4 Hz is the desired blink frequency, and the factor of 2 in the denominator accounts for the fact that the LED toggles on every other cycle of the counter. The resulting value of DIV is 10,000,000, which means that the counter will count to 10 million before toggling the LED, resulting in a blink frequency of 2.4 Hz.</p>
 </section>
 </section>
@@ -272,7 +272,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="results-and-discussion">Results and Discussion</h2>
 <section id="testbench-simulation" class="level3">
 <h3 class="anchored" data-anchor-id="testbench-simulation">Testbench Simulation</h3>
-<p><img src="images/allwaveforms.png" class="img-fluid" alt="Top Module Testbench Waveforms"> <img src="images/sevensegmentwaveforms.png" class="img-fluid" alt="Seven Segment Display Testbench Waveforms"> <img src="images/blinkwaveforms.png" class="img-fluid" alt="LED Blink Testbench Waveforms"></p>
+<p><img src="images/allwaveforms.png" class="img-fluid" alt="Top Module Testbench Waveforms"> <img src="images/sevensegwaves.png" class="img-fluid" alt="Seven Segment Display Testbench Waveforms"> <img src="images/blinkwaveforms.png" class="img-fluid" alt="LED Blink Testbench Waveforms"></p>
 <p>Above are the waveforms generated from each testbench simulation. Each module had its own test bench. The waveforms show that the design is functioning as expected. The first two LEDs are illuminated based on the input. The seven segment display is also functioning as expected, displaying the correct hexadecimal digit based on the binary input.</p>
 </section>
 <section id="discussion" class="level3">
