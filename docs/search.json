@@ -49,6 +49,55 @@
     "text": "Lab 7 - The Advanced Encryption Standard"
   },
   {
+    "objectID": "labs/lab2/lab.html",
+    "href": "labs/lab2/lab.html",
+    "title": "Lab 2 - Multiplexed 7-Segment Display",
+    "section": "",
+    "text": "This lab can be split into two main parts. First, I designed a system to time multiplex a dual seven-segment display to show a 2-digit hexadecimal number. The second part of the lab was to design a keypad scanner that blinks an LED based on the column of the currently pressed key."
+  },
+  {
+    "objectID": "labs/lab2/lab.html#introduction",
+    "href": "labs/lab2/lab.html#introduction",
+    "title": "Lab 2 - Multiplexed 7-Segment Display",
+    "section": "",
+    "text": "This lab can be split into two main parts. First, I designed a system to time multiplex a dual seven-segment display to show a 2-digit hexadecimal number. The second part of the lab was to design a keypad scanner that blinks an LED based on the column of the currently pressed key."
+  },
+  {
+    "objectID": "labs/lab2/lab.html#design-and-testing-methodology",
+    "href": "labs/lab2/lab.html#design-and-testing-methodology",
+    "title": "Lab 2 - Multiplexed 7-Segment Display",
+    "section": "Design and Testing Methodology",
+    "text": "Design and Testing Methodology\n\nFrequency Calculations\nFor the first step of the design, the time multiplexing of the dual seven-segment display, I started with the seven segment decoder module I developed in the previous lab. I then had to find the correct frequency to multiplex the two displays. I looked online for what frequency the human eye can perceive as a constant light and found that it is around 60 Hz. I then decided to use a frequency of 120 Hz to multiplex the two displays to ensure there was no visible flicker. To achieve this frequency I used the on-board high-speed oscillator to generate a 48 MHz clock signal, then a counter was used with a max count of 200000 to generate a 120 Hz multiplexing frequency. My math to get the maximum count of 200000 is as follows: \\(maxCount = \\frac{48\\text{ MHz}}{2 \\times 120\\text{ Hz}} = 200,000\\)\nSimilar math was done to achieve the proper frequency for the keypad scanner. I wanted all 4 columns to be illuminated once within 0.5s. In other words, each LED should be on for 0.125 s in the scan pattern and the full scan pattern should complete twice within 1 second. In other words, you are scanning the full keypad twice per second (2 Hz). \\(maxCount = {48\\text{ MHz}} {\\times 0.125\\text{ s}} = 6,000,000\\)\n\n\nHardware Design\nThe pinout schematic for the time-multiplexed dual seven-segment display is shown below. 2N3906 PNP transistors were used to drive the common anode of each display. The cathodes of the displays are connected to the FPGA pins through 150 ohm resistors. \nThe schematic for the keypad scanner is also shown below. The rows of the keypad are connected to the FPGA pins through 2N3904 NPN transistors, and the columns of the keypad are connected to the FPGA pins directly. Internal 100k ohm pull-up resistors are used on the column pins. The LEDs areconnected to the FPGA pin through 330 ohm resistors."
+  },
+  {
+    "objectID": "labs/lab2/lab.html#technical-documentation",
+    "href": "labs/lab2/lab.html#technical-documentation",
+    "title": "Lab 2 - Multiplexed 7-Segment Display",
+    "section": "Technical Documentation",
+    "text": "Technical Documentation\nThe source code for the project can be found in the associated Github repository\n\nBlock Diagram\n\n\n\nBlock Diagram of the Design"
+  },
+  {
+    "objectID": "labs/lab2/lab.html#results-and-discussion",
+    "href": "labs/lab2/lab.html#results-and-discussion",
+    "title": "Lab 2 - Multiplexed 7-Segment Display",
+    "section": "Results and Discussion",
+    "text": "Results and Discussion\n\nTestbench Simulation\n\n\n\nTop Module Testbench Waveforms\n\n\n\n\n\nScanner Testbench Waveforms\n\n\nAbove are the waveforms generated from each testbench simulation. Each module had its own test bench. Since the counter and sevenSegment modules came from the previous lab, they were not tested again. The top module test bench was used to test the entire design. The scanner test bench was used to test the keypad scanner module. The waveforms show that the design is functioning as expected.\n\n\nDiscussion\nAll prescribed tasks were completed successfully."
+  },
+  {
+    "objectID": "labs/lab2/lab.html#conclusion",
+    "href": "labs/lab2/lab.html#conclusion",
+    "title": "Lab 2 - Multiplexed 7-Segment Display",
+    "section": "Conclusion",
+    "text": "Conclusion\nThe design successfully displayed hexadecimal values on a dual seven-segment display by time multiplexing at a 120 Hz frequency. Additionally, the keypad scanner was able to scan the keypad at a frequency of 2 Hz and blink an LED based on the column of the currently pressed key.\nI spent about twenty hours working on this lab."
+  },
+  {
+    "objectID": "labs/lab2/lab.html#ai-prototype-summary",
+    "href": "labs/lab2/lab.html#ai-prototype-summary",
+    "title": "Lab 2 - Multiplexed 7-Segment Display",
+    "section": "AI Prototype Summary",
+    "text": "AI Prototype Summary\nWhen given the first prompt, Copilot generated the following:\nmodule seven_seg_decoder (\n    input  logic [3:0] bin,\n    output logic [6:0] seg   // {a,b,c,d,e,f,g}, active-low\n);\n    always_comb begin\n        case (bin)\n            4'h0: seg = 7'b0000001;\n            4'h1: seg = 7'b1001111;\n            4'h2: seg = 7'b0010010;\n            4'h3: seg = 7'b0000110;\n            4'h4: seg = 7'b1001100;\n            4'h5: seg = 7'b0100100;\n            4'h6: seg = 7'b0100000;\n            4'h7: seg = 7'b0001111;\n            4'h8: seg = 7'b0000000;\n            4'h9: seg = 7'b0000100;\n            4'hA: seg = 7'b0001000;\n            4'hB: seg = 7'b1100000;\n            4'hC: seg = 7'b0110001;\n            4'hD: seg = 7'b1000010;\n            4'hE: seg = 7'b0110000;\n            4'hF: seg = 7'b0111000;\n            default: seg = 7'b1111111; // all off\n        endcase\n    end\nendmodule\n\nmodule seven_seg_mux2 (\n    input  logic        clk,\n    input  logic        rst_n,\n\n    input  logic [3:0]  digit0,   // first nibble\n    input  logic [3:0]  digit1,   // second nibble\n\n    output logic [6:0]  seg,      // shared segment lines (active-low)\n    output logic [1:0]  an        // anode enables (active-low)\n);\n\n    // ------------------------------------------------------------\n    // Clock divider for multiplexing (adjust DIV for refresh rate)\n    // ------------------------------------------------------------\n    localparam int DIV = 50000;   // ~1 kHz at 50 MHz clock\n    logic [$clog2(DIV)-1:0] cnt;\n    logic mux_sel;\n\n    always_ff @(posedge clk or negedge rst_n) begin\n        if (!rst_n) begin\n            cnt     &lt;= '0;\n            mux_sel &lt;= 1'b0;\n        end else begin\n            if (cnt == DIV-1) begin\n                cnt     &lt;= '0;\n                mux_sel &lt;= ~mux_sel;   // toggle between digit0 and digit1\n            end else begin\n                cnt &lt;= cnt + 1;\n            end\n        end\n    end\n\n    // ------------------------------------------------------------\n    // Select which digit to decode\n    // ------------------------------------------------------------\n    logic [3:0] active_digit;\n\n    always_comb begin\n        case (mux_sel)\n            1'b0: begin\n                active_digit = digit0;\n                an = 2'b10;   // enable digit0 (active-low)\n            end\n            1'b1: begin\n                active_digit = digit1;\n                an = 2'b01;   // enable digit1 (active-low)\n            end\n        endcase\n    end\n\n    // ------------------------------------------------------------\n    // Shared decoder instance\n    // ------------------------------------------------------------\n    seven_seg_decoder dec_inst (\n        .bin(active_digit),\n        .seg(seg)\n    );\n\nendmodule\nIt compiled successfully. Scanning through the code I believe it would work, it just probably wouldn’t meet lab specifications. I then used ChatGPT to upload my lab 1 code and the second given prompt. The code it produced:\n// Isabella Vera\n// E155 Lab 1\n// Time-multiplexed seven-segment display\n\nmodule top (\n    input  logic [3:0] s0,\n    input  logic [3:0] s1,\n    input  logic reset,\n\n    output logic [6:0] seg0,\n    output logic [6:0] seg1\n);\n\n    // Internal high-speed oscillator\n    logic int_osc;\n    HSOSC hf_osc (\n        .CLKHFPU(1'b1),\n        .CLKHFEN(1'b1),\n        .CLKHF(int_osc)\n    );\n\n    // Counter used to slow down the multiplexing\n    logic [15:0] count;\n\n    always_ff @(posedge int_osc or posedge reset) begin\n        if (reset)\n            count &lt;= 16'b0;\n        else\n            count &lt;= count + 1'b1;\n    end\n\n    // Select between the two input digits\n    logic [3:0] selected_input;\n\n    assign selected_input = count[15] ? s1 : s0;\n\n    // Output of the single seven-segment decoder\n    logic [6:0] decoded_seg;\n\n    // Use one decoder for both displays\n    sevenSegDecoder decoder (\n        .s(selected_input),\n        .seg(decoded_seg)\n    );\n\n    // Time multiplex the decoder output\n    // Outputs are active-low because the display is common-anode.\n    always_comb begin\n        if (count[15]) begin\n            seg0 = 7'b1111111;  // display 0 off\n            seg1 = decoded_seg;  // display 1 on\n        end\n        else begin\n            seg0 = decoded_seg;  // display 0 on\n            seg1 = 7'b1111111;  // display 1 off\n        end\n    end\n\nendmodule\nI found it interesting that the code generated by ChatGPT was very similar to my own code from lab 1. I was surprised that it even generated my name and information in the top comment. This code also compileds successfully. I believe both designs would work, but the ChatGPT design is more efficient in terms of using modules I already developed, something I implemented in lab this week."
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Isabella Vera",
