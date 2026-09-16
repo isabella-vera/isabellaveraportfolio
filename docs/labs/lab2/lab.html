@@ -203,8 +203,16 @@ window.Quarto = {
 </section>
 <section id="hardware-design" class="level3">
 <h3 class="anchored" data-anchor-id="hardware-design">Hardware Design</h3>
-<p>The pinout schematic for the time-multiplexed dual seven-segment display is shown below. 2N3906 PNP transistors were used to drive the common anode of each display. The cathodes of the displays are connected to the FPGA pins through 150 ohm resistors. <img src="images/sevensegdiagram.png" class="img-fluid" alt="Seven-Segment Display Schematic"></p>
-<p>The schematic for the keypad scanner is also shown below. The rows of the keypad are connected to the FPGA pins through 2N3904 NPN transistors, and the columns of the keypad are connected to the FPGA pins directly. Internal 100k ohm pull-up resistors are used on the column pins. The LEDs areconnected to the FPGA pin through 330 ohm resistors. <img src="images/keypaddiagram.png" class="img-fluid" alt="Keypad Scanner Schematic"></p>
+<p>The pinout schematic for the time-multiplexed dual seven-segment display is shown below. 2N3906 PNP transistors were used to drive the common anode of each display. I needed a resistor to limit the current through the base of the PNP transistor. The emitter is connected to 3.3 V. The base-emitter voltage drop is 0.65 V (from the datasheet), so the voltage at the base is then 2.65 V. The FPGA pins can handle a maximum current of 8 mA, so the base resistor should be at least 330 ohms to limit the current to a safe value. I chose to use a 1k ohm resistor to be safe.</p>
+<p>For the resistors from the display cathodes to the FPGA pins, I used 150 ohm resistors. I got this by looking at the datasheet for the transistor and getting the Collector−Emitter Saturation Voltage of ~0.2V. This leaves the voltage at the collector to be about 3.1 V. This path eventually leads to an FPGA pin so the current cannot exceed 8 mA. The forward voltage of the LED segment is about 1.8 V for 8 mA of current. Calculations are shown below: <img src="images/resistorcalcs.jpeg" class="img-fluid" alt="Resistor Calculations"></p>
+<p>The schematic is shown below. <img src="images/sevensegdiagram.png" class="img-fluid" alt="Seven-Segment Display Schematic"></p>
+<p>The schematic for the keypad scanner is also shown below. The rows of the keypad are connected to the FPGA pins through 2N3904 NPN transistors, and the columns of the keypad are connected to the FPGA pins directly. Internal 100k ohm pull-up resistors are used on the column pins. The LEDs are connected to the FPGA pin through 330 ohm resistors. These were chosen to limit the current through the LEDs. Using a typical forward voltage for a green LED of 2.1 V, the resistor will have 1.2 V across it. To keep the current within the FPGA’s and the LED’s constraints, I choose to use 330 ohm resistors which gives a current of 3.6 mA. This is well within the range.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/keypaddiagram.png" class="img-fluid figure-img"></p>
+<figcaption>Keypad Scanner Schematic</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="technical-documentation" class="level2">
